@@ -1,5 +1,8 @@
-# Start from current build
-sudo dnf update -y
+# 
+# sudo dnf install git gh
+# git config --global user.name ""
+# git config --global user.email ""
+# gh auth login
 
 # RPMFusion Free Repo install
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
@@ -11,17 +14,27 @@ sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfre
 sudo dnf update -y
 
 # Installing required packages
-sudo dnf install git gh nvim tmux kitty btop golang postgresql 
-
-# Set my git configs
-echo "Open a new terminal and set your git configs"
-echo "git config --global user.name"
-echo "git config --global user.email"
-echo "Press any key to continue ..........."
-read
-
-# Link this machine to my github
-gh auth login
+sudo dnf install nvim tmux kitty btop golang postgresql snapd
 
 # Install starship
 curl -sS https://starship.rs/install.sh | sh
+
+# Installing Obsidian
+sudo ln -s /var/lib/snapd/snap /snap
+sudo snap install obsidian --classic
+
+# Grab my nvim configs from github
+git clone https://github.com/Skyehunter13375/NullSky-Nvim.git ~/.config/nvim
+
+# Grab the rest of my .configs and put em where they need to go
+mkdir ~/Projects
+mkdir ~/.config/kitty
+
+git clone https://github.com/Skyehunter13375/dotconfigs.git ~/Projects/dotconfigs
+
+mv ~/Projects/dotconfigs/kitty.conf ~/.config/kitty/
+mv ~/Projects/dotconfigs/.tmux.conf ~/
+mv ~/Projects/dotconfigs/starship.toml ~/.config/
+
+git clone https://github.com/Skyehunter13375/Spacetraders_Client.git ~/Projects/SpaceTraders
+
