@@ -11,8 +11,7 @@
 
 
 projDir="${HOME}/Projects"
-cnfgDir="${projDir}/dotconfigs" 
-nvimDir="${projDir}/nvim"
+confDir="${projDir}/dotconfigs"
 setuplg="${projDir}/setup.log"
 
 
@@ -34,18 +33,19 @@ sudo snap install obsidian --classic
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━┫ Grabbing my github repos ┣━━━━━━━━━━━━━━━━━━━━━━━━━┫'
-git clone https://github.com/Skyehunter13375/NullSky-Nvim.git ${projDir}/nvim
+git clone https://github.com/Skyehunter13375/NullSky-Nvim.git        ${projDir}/nvim
 git clone https://github.com/Skyehunter13375/Spacetraders_Client.git ${projDir}/SpaceTraders
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━┫ Creating config symlinks ┣━━━━━━━━━━━━━━━━━━━━━━━━━┫'
-ln -sf ${projDir}/nvim          ~/.config/nvim
-ln -sf ${cnfgDir}/kitty         ~/.config/kitty
-ln -sf ${cnfgDir}/starship.toml ~/.config/starship.toml
-ln -sf ${cnfgDir}/.tmux.conf    ~/.tmux.conf
-ln -sf ${cnfgDir}/.bashrc       ~/.bashrc
+ln -sf ${confDir}/.config/nvim          ~/.config/nvim;          ls -la ~/.config/nvim
+ln -sf ${confDir}/.config/kitty         ~/.config/kitty;         ls -la ~/.config/kitty
+ln -sf ${confDir}/.config/starship.toml ~/.config/starship.toml; ls -la ~/.config/starship.toml
+ln -sf ${confDir}/.tmux.conf            ~/.tmux.conf;            ls -la ~/.tmux.conf
+ln -sf ${confDir}/.bashrc               ~/.bashrc;               ls -la ~/.bashrc
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━┫ Linking root configs to mine ┣━━━━━━━━━━━━━━━━━━━━━━━┫'
-sudo ln -sf "$HOME/.config/nvim" /root/.config/nvim
-sudo ln -sf "$HOME/.bashrc"      /root/.bashrc
+sudo mkdir /root/.config
+sudo ln -sf "$HOME/.config/nvim" /root/.config/nvim; ls -la ~/root/.config/nvim
+sudo ln -sf "$HOME/.bashrc"      /root/.bashrc;      ls -la ~/root/.bashrc
 
