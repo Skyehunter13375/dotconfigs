@@ -1,40 +1,51 @@
-# 
+# ################################## #
+# DO THIS BEFORE RUNNING THIS SCRIPT #
+# ################################## #
 # sudo dnf install git gh
 # git config --global user.name ""
 # git config --global user.email ""
 # gh auth login
+# mkdir ~/Projects
+# git clone https://github.com/Skyehunter13375/dotconfigs.git ~/Projects/dotconfigs
+# ~/Projects/dotconfigs/SetupScripts/newSetup.sh
 
-# RPMFusion Free Repo install
-sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 
-# RPMFusion NON-FREE Repo install
-sudo dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+projDir="${HOME}/Projects"
+cnfgDir="${projDir}/dotconfigs" 
+nvimDir="${projDir}/nvim"
+setuplg="${projDir}/setup.log"
 
-# Update to read in the RPMFusion stuff
+
+echo '┣━━━━━━━━━━━━━━━━━━┫ Installing RPMFusion (Free + Non-Free) ┣━━━━━━━━━━━━━━━━━━┫'
+sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
+sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf update -y
 
-# Installing required packages
-sudo dnf install nvim tmux kitty btop golang postgresql snapd
+
+echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing packages ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
+sudo dnf install -y snapd nvim tmux kitty btop golang php postgresql discord
 
 # Install starship
 curl -sS https://starship.rs/install.sh | sh
 
-# Installing Obsidian
-sudo ln -s /var/lib/snapd/snap /snap
+# Set up snapd and install Obsidian
+sudo ln -sf /var/lib/snapd/snap /snap
 sudo snap install obsidian --classic
 
-# Grab my nvim configs from github
-git clone https://github.com/Skyehunter13375/NullSky-Nvim.git ~/.config/nvim
 
-# Grab the rest of my .configs and put em where they need to go
-mkdir ~/Projects
-mkdir ~/.config/kitty
+echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━┫ Grabbing my github repos ┣━━━━━━━━━━━━━━━━━━━━━━━━━┫'
+git clone https://github.com/Skyehunter13375/NullSky-Nvim.git ${projDir}/nvim
+git clone https://github.com/Skyehunter13375/Spacetraders_Client.git ${projDir}/SpaceTraders
 
-git clone https://github.com/Skyehunter13375/dotconfigs.git ~/Projects/dotconfigs
 
-mv ~/Projects/dotconfigs/kitty.conf ~/.config/kitty/
-mv ~/Projects/dotconfigs/.tmux.conf ~/
-mv ~/Projects/dotconfigs/starship.toml ~/.config/
+echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━┫ Creating config symlinks ┣━━━━━━━━━━━━━━━━━━━━━━━━━┫'
+ln -sf ${projDir}/nvim          ~/.config/nvim
+ln -sf ${cnfgDir}/kitty         ~/.config/kitty
+ln -sf ${cnfgDir}/starship.toml ~/.config/starship.toml
+ln -sf ${cnfgDir}/.tmux.conf    ~/.tmux.conf
+ln -sf ${cnfgDir}/.bashrc       ~/.bashrc
 
-git clone https://github.com/Skyehunter13375/Spacetraders_Client.git ~/Projects/SpaceTraders
+echo '┣━━━━━━━━━━━━━━━━━━━━━━━┫ Linking root configs to mine ┣━━━━━━━━━━━━━━━━━━━━━━━┫'
+sudo ln -sf "$HOME/.config/nvim" /root/.config/nvim
+sudo ln -sf "$HOME/.bashrc"      /root/.bashrc
 
