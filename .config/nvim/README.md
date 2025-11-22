@@ -22,16 +22,19 @@ If you are looking for a well-built and easy to use neovim config I would sugges
 
 # Basic keybinds:
 ```
-<Esc> + <Esc>    --  Exit terminal mode
-<CTRL> + h       -- Shift focus to the left window 
-<CTRL> + j       -- Shift focus to the lower window
-<CTRL> + k       -- Shift focus to the upper window
-<CTRL> + l       -- Shift focus to the right window
-<Space> + s + f  -- Telescope fuzzy find files
-<Space> + s + g  -- Telescope fuzzy find grep
-<Space> + s + n  -- Telescope fuzzy find NeoVim config directory
-<Space> + f + s  -- Open/Focus NeoTree
-<Space> + q + q  -- Quit focused window without saving
-<Space> + w + q  -- Save buffer to disk and quit focused window
-<Space> + t + t  -- Open a floating terminal
+<Esc> + <Esc>     --  Exit terminal mode
+<CTRL> + h        -- Shift focus to the left window 
+<CTRL> + j        -- Shift focus to the lower window
+<CTRL> + k        -- Shift focus to the upper window
+<CTRL> + l        -- Shift focus to the right window
+<CTRL> + w + v    -- Split window vertically (new blank doc)
+<CTRL> + w + V    -- Split window horizontally (new blank doc)
+<leader> + s + f  -- Telescope fuzzy find files
+<leader> + s + g  -- Telescope fuzzy find grep
+<leader> + s + n  -- Telescope fuzzy find NeoVim config directory
+<leader> + f + s  -- Open/Focus NeoTree
+<leader> + q + q  -- Quit focused window without saving
+<leader> + w + q  -- Save buffer to disk and quit focused window
+<leader> + t + t  -- Open a floating terminal
+<leader> + / + /  -- Comment current line (in normal mode) or comment block (in visual mode)
 ```

@@ -11,6 +11,21 @@ return {
         automatic_installation = true,
       }
 
+    vim.diagnostic.config({
+      virtual_text = true,      -- Show virtual text for diagnostics
+      signs = true,             -- Show signs in the sign column
+      update_in_insert = false, -- Don't update diagnostics in insert mode
+      severity_sort = true,     -- Sort diagnostics by severity
+      float = {                 -- Configuration for the floating window
+        focusable = false,
+        style = "minimal",
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+      },
+    })
+
       -- ┣━━━━━━━━━━━┫ Auto-start LSPs by filetype ┣━━━━━━━━━━━┫
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "go", "gomod", "gowork", "gotmpl" },

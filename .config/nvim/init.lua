@@ -32,15 +32,61 @@ require("lazy").setup("plugins") -- Reads from lua/plugins dir on change
 local builtin = require("telescope.builtin") -- Required for treesitter to work
 
 
+-- ┣━━━━━━━━━━━━━━━━┫ Display diagnostic data in-line with code ┣━━━━━━━━━━━━━━━━━┫
+vim.diagnostic.config({
+  virtual_text = true,      -- Show virtual text for diagnostics
+  signs = true,             -- Show signs in the sign column
+  update_in_insert = false, -- Don't update diagnostics in insert mode
+  severity_sort = true,     -- Sort diagnostics by severity
+  float = {                 -- Configuration for the floating window
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+})
+
+
+-- ┣━━━━━━━━━━━━┫ Keybind for auto-comment a selected block of text ┣━━━━━━━━━━━━━┫
+local comment_prefix = {
+  go     = "// ",
+  php    = "// ",
+  c      = "// ",
+  cpp    = "// ",
+  bash   = "# ",
+  sh     = "# ",
+  python = "# ",
+}
+
+local function comment_block()
+  local ft = vim.bo.filetype
+  local prefix = comment_prefix[ft] or "// "
+  vim.cmd("normal! I" .. prefix)
+end
+
+vim.keymap.set("v", "<C-C>", comment_block, {
+  noremap = true,
+  silent  = true,
+  desc    = "Comment selected block",
+})
+
+
 -- ┣━━━━━━━━━━━━━━━━━━━━━━┫ Setting My Preferred Keybinds ┣━━━━━━━━━━━━━━━━━━━━━━━┫ --
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>',                         { desc = 'Exit terminal mode' })
-vim.keymap.set('n', '<C-h>',      '<C-w><C-h>',                          { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>',      '<C-w><C-l>',                          { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>',      '<C-w><C-j>',                          { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>',      '<C-w><C-k>',                          { desc = 'Move focus to the upper window' })
-vim.keymap.set('n', '<leader>sf', builtin.find_files,                    { desc = 'Treesitter Fuzzyfind Files' })
-vim.keymap.set('n', '<leader>sg', builtin.live_grep,                     { desc = 'Treesitter Fuzzyfind Grep'})
-vim.keymap.set('n', '<leader>fs', ':Neotree filesystem reveal left<CR>', { desc = 'Show/Hide Neotree' })
-vim.keymap.set('n', '<leader>q',  ':q!<CR>',                             { desc = "Quit without saving" })
-vim.keymap.set('n', '<leader>w',  ':w!<CR>',                             { desc = "Save and Quite" })
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>',                          {desc='Exit terminal mode' })
+vim.keymap.set('n', '<C-w>v',     ':vnew<CR>',                            {desc='Split current window vertically' })
+vim.keymap.set('n', '<C-w>V',     ':new<CR>',                             {desc='Split current window Horizontally' })
+vim.keymap.set('n', '<C-h>',      '<C-w><C-h>',                           {desc='Move focus to the left window' })
+vim.keymap.set('n', '<C-l>',      '<C-w><C-l>',                           {desc='Move focus to the right window' })
+vim.keymap.set('n', '<C-j>',      '<C-w><C-j>',                           {desc='Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>',      '<C-w><C-k>',                           {desc='Move focus to the upper window' })
+vim.keymap.set('n', '<leader>sf', builtin.find_files,                     {desc='Treesitter Fuzzyfind Files' })
+vim.keymap.set('n', '<leader>sg', builtin.live_grep,                      {desc='Treesitter Fuzzyfind Grep'})
+vim.keymap.set('n', '<leader>fs', ':Neotree filesystem reveal left<CR>',  {desc='Show/Hide Neotree'})
+vim.keymap.set('n', '<leader>q',  ':q!<CR>',                              {desc='Quit without saving'})
+vim.keymap.set('n', '<leader>w',  ':w!<CR>',                              {desc='Save and Quite'})
+vim.keymap.set('v', '<leader>//', ":'<,'>normal! I// <CR>",               {desc='Comment selected block', silent=true})
+vim.keymap.set('n', '<leader>//', ":normal! I// <CR>",                    {desc='Comment current line',   silent=true})
 vim.keymap.set('n', '<leader>sn', function() builtin.find_files { cwd = vim.fn.stdpath 'config' } end, { desc = "Seach NeoVim config files" })
+
