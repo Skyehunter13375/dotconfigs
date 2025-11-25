@@ -7,22 +7,22 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup {
-        ensure_installed = { "bashls", "gopls", "intelephense", "lua_ls" },
+        ensure_installed       = { "bashls", "gopls", "intelephense", "lua_ls" },
         automatic_installation = true,
       }
 
     vim.diagnostic.config({
-      virtual_text = true,      -- Show virtual text for diagnostics
-      signs = true,             -- Show signs in the sign column
+      virtual_text     = true,  -- Show virtual text for diagnostics
+      signs            = true,  -- Show signs in the sign column
       update_in_insert = false, -- Don't update diagnostics in insert mode
-      severity_sort = true,     -- Sort diagnostics by severity
+      severity_sort    = true,  -- Sort diagnostics by severity
       float = {                 -- Configuration for the floating window
         focusable = false,
-        style = "minimal",
-        border = "rounded",
-        source = "always",
-        header = "",
-        prefix = "",
+        style     = "minimal",
+        border    = "rounded",
+        source    = "always",
+        header    = "",
+        prefix    = "",
       },
     })
 
