@@ -10,7 +10,8 @@ if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
-
+export HISTCONTROL=ignoredups
+export HISTFILESIZE=2500
 
 comment() {
     local text="$*"
@@ -73,3 +74,4 @@ alias summoner='ssh skyehunter@10.10.1.27'
 alias tree='tree -aI .git --dirsfirst'
 
 eval "$(starship init bash)"
+# eval "fastfetch"
