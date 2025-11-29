@@ -24,6 +24,7 @@ sudo dnf update -y
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing packages ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
+sudo dnf copr enable varlad/yazi -y
 sudo dnf install -y nvim tmux kitty btop golang php postgresql-server discord yazi jq
 
 
@@ -43,7 +44,6 @@ sudo fc-cache -f
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━┫ Grabbing my github repos ┣━━━━━━━━━━━━━━━━━━━━━━━━━┫'
-git clone https://github.com/Skyehunter13375/NullSky-Nvim.git ${projDir}/nvim
 git clone https://github.com/Skyehunter13375/Spacetraders_Client.git ${projDir}/SpaceTraders
 
 
@@ -64,16 +64,15 @@ ln -sf ${confDir}/.bashrc ~/.bashrc
 ls -la ~/.bashrc
 
 mkdir ~/Applications
-echo "Go download Obsidian and stick the appimage in ~/Applications"
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━┫ Linking root configs to mine ┣━━━━━━━━━━━━━━━━━━━━━━━┫'
 sudo mkdir /root/.config
 sudo ln -sf "$HOME/.config/nvim" /root/.config/nvim
-ls -la /root/.config/nvim
+sudo ls -la /root/.config/nvim
 
 sudo ln -sf "$HOME/.bashrc" /root/.bashrc
-ls -la /root/.bashrc
+sudo ls -la /root/.bashrc
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━┫ Set up PostgreSQL Database ┣━━━━━━━━━━━━━━━━━━━━━━━━┫'
@@ -94,3 +93,7 @@ local   replication     all                                     peer  # Allow re
 host    replication     all             127.0.0.1/32            ident # Allow replication connections from localhost, by a user with the replication privilege.
 host    replication     all             ::1/128                 ident # Allow replication connections from localhost, by a user with the replication privilege.
 ' > /var/lib/pgsql/data/pg_hba.conf
+
+echo 'All done'
+echo 'Go download Obsidian and stick the appimage in ~/Applications if you want'
+
