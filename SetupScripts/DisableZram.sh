@@ -16,7 +16,7 @@ sudo swapon /swapfile
 sudo swapon --show
 
 # Add to fstab so that it swapons at boot
-sudo printf "/swapfile  none  swap  sw  0  0\n" >> /etc/fstab
+sudo bash -c "echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab"
 
 # Creating an empty file here disables the default Fedora zram configs
 sudo touch /etc/systemd/zram-generator.conf
