@@ -13,6 +13,8 @@
 projDir="${HOME}/Projects"
 confDir="${projDir}/dotconfigs"
 setuplg="${projDir}/setup.log"
+fontDir="/usr/share/fonts"
+ccfonts="${fontDir}/CascadiaCodeNerdFonts"
 
 
 echo '┣━━━━━━━━━━━━━━━━━━┫ Installing RPMFusion (Free + Non-Free) ┣━━━━━━━━━━━━━━━━━━┫'
@@ -22,14 +24,22 @@ sudo dnf update -y
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing packages ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
-sudo dnf install -y snapd nvim tmux kitty btop golang php postgresql discord
+sudo dnf install -y nvim tmux kitty btop golang php postgresql-server discord yazi jq
 
-# Install starship
+
+echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing Starship ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
 curl -sS https://starship.rs/install.sh | sh
 
-# Set up snapd and install Obsidian
-sudo ln -sf /var/lib/snapd/snap /snap
-sudo snap install obsidian --classic
+
+echo '┣━━━━━━━━━━━━━━━━━━━━┫ Installing CascadiaCode Nerd Fonts ┣━━━━━━━━━━━━━━━━━━━━┫'
+sudo mkdir -p "${ccfonts}"
+CCVersion=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | jq -r '.tag_name')
+URL="https://github.com/ryanoasis/nerd-fonts/releases/download/$CCVersion"
+sudo wget -P "${ccfonts}" "$URL/CascadiaCode.zip"
+sudo wget -P "${ccfonts}" "$URL/CascadiaMono.zip"
+sudo unzip "${ccfonts}/CascadiaCode.zip" -d "${ccfonts}"
+sudo unzip "${ccfonts}/CascadiaMono.zip" -d "${ccfonts}"
+sudo fc-cache -f
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━┫ Grabbing my github repos ┣━━━━━━━━━━━━━━━━━━━━━━━━━┫'
@@ -53,6 +63,9 @@ ls -la ~/.tmux.conf
 ln -sf ${confDir}/.bashrc ~/.bashrc
 ls -la ~/.bashrc
 
+mkdir ~/Applications
+echo "Go download Obsidian and stick the appimage in ~/Applications"
+
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━┫ Linking root configs to mine ┣━━━━━━━━━━━━━━━━━━━━━━━┫'
 sudo mkdir /root/.config
@@ -62,3 +75,22 @@ ls -la /root/.config/nvim
 sudo ln -sf "$HOME/.bashrc" /root/.bashrc
 ls -la /root/.bashrc
 
+
+echo '┣━━━━━━━━━━━━━━━━━━━━━━━━┫ Set up PostgreSQL Database ┣━━━━━━━━━━━━━━━━━━━━━━━━┫'
+sudo postgresql-setup --initdb
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+sudo -i -u postgres createdb spacetraders
+sudo -i -u postgres createuser skyehunter -P
+sudo -i -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE spacetraders TO skyehunter;"
+sudo -i -u postgres psql -c "GRANT ALL PRIVILEGES ON SCHEMA public TO skyehunter;'
+
+echo '
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+local   all             all                                     md5   # "local" is for Unix domain socket connections only
+host    all             all             127.0.0.1/32            md5   # IPv4 local connections:
+host    all             all             ::1/128                 md5   # IPv6 local connections:
+local   replication     all                                     peer  # Allow replication connections from localhost, by a user with the replication privilege.
+host    replication     all             127.0.0.1/32            ident # Allow replication connections from localhost, by a user with the replication privilege.
+host    replication     all             ::1/128                 ident # Allow replication connections from localhost, by a user with the replication privilege.
+' > /var/lib/pgsql/data/pg_hba.conf
