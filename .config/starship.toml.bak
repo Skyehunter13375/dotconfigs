@@ -1,0 +1,88 @@
+# ── Global ───────────────────────────────────────────────────────────────────
+add_newline     = true 
+command_timeout = 1000
+
+format = """
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$git_state\
+$git_commit\
+\n$character
+"""
+
+[hostname]
+ssh_only = false
+style = "#3C2E75"
+format = "[](fg:black bg:$style)[$hostname](fg:white bg:$style)[](fg:$style)"
+
+[character]
+success_symbol = "[❯](#ff9400)"
+error_symbol = "[❯](#ff9400)"
+
+[cmd_duration]
+style = "#005EAA"
+format = "[](fg:black bg:$style)[$duration](bg:$style fg:white)[](fg:$style)"
+
+[directory]
+style = "#223F9C"
+truncate_to_repo = false
+fish_style_pwd_dir_length = 1
+format = "[](fg:black bg:$style)[$path](bg:$style fg:white)[](fg:$style)"
+read_only = " "
+
+[git_branch]
+style = "#005EAA"
+format = "[](fg:black bg:$style)[ $symbol$branch](fg:white bg:$style)[](fg:$style)"
+
+[git_commit]
+style = "#005EAA"
+format = "\b[ ](bg:$style)[\\($hash$tag\\)](fg:white bg:$style)[](fg:$style)"
+
+[git_state]
+style = "#005EAA"
+format = "\b[ ](bg:$style)[ \\($state( $progress_current/$progress_total)\\)](fg:white bg:$style)[](fg:$style)"
+
+[git_status]
+style      = "#005EAA"
+format     = "(\b[ ](bg:$style fg:black)$conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead_behind[](fg:$style))"
+conflicted = "[ ](bold fg:88 bg:$style)[  ${count} ](fg:white bg:$style)"
+staged     = "[ $count ](fg:white bg:#005EAA)"
+modified   = "[ ${count} ](fg:white bg:#005EAA)"
+renamed    = "[ ${count} ](fg:white bg:#005EAA)"
+deleted    = "[ ${count} ](fg:white bg:#005EAA)"
+untracked  = "[?${count} ](fg:white bg:#005EAA)"
+stashed    = "[ ${count} ](fg:white bg:#005EAA)"
+ahead      = "[ ${count} ](fg:white bg:#005EAA)"
+behind     = "[ ${count} ](fg:white bg:#005EAA)"
+diverged   = "[ ](fg:88 bg:#005EAA)[ נּ ](fg:white bg:#005EAA)[ ${ahead_count} ](fg:white bg:#005EAA)[ ${behind_count} ](fg:white bg:#005EAA)"
+
+[package]
+disabled = true
+
+[shell]
+bash_indicator = ""
+format = "[$indicator](fg:#ad4007)"
+disabled = false
+
+[username]
+style_user = "#0370C0"
+style_root = "#C00311"
+
+[palettes.dragoon_theme]
+black_0   = "#0B0B0E"  # Deep abyssal black-blue (base background)
+purp_0    = "#1A2A6C"  # Azure Dragoon armor (primary)
+blue_1    = "#223F9C"  # Mid azure highlight
+blue_2    = "#005EAA"  # Lance glow blue
+blue_3    = "#00B8FF"  # Aetheric light accent
+red_0     = "#005EAA"  # Blood of the Dragon red
+silver    = "#BFC6D0"  # Steel armor accent
+gray_0    = "#3B3B3B"  # Neutral divider gray
+drachen_0 = "#241B4B"  # Deep armor base
+drachen_1 = "#3C2E75"  # Core highlight
+drachen_2 = "#6A4BBE"  # Edge glow
+git_0 = "#BFFFD1"
+git_2 = "#5FED83"
+git_3 = "#08872B"
+git_4 = "#104C35"

@@ -12,6 +12,7 @@ fi
 export PATH
 export HISTCONTROL=ignoredups
 export HISTFILESIZE=2500
+export EDITOR="/usr/bin/nvim"
 
 comment() {
     local text="$*"
