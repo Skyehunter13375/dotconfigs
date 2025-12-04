@@ -2,28 +2,28 @@ format = """${hostname}${directory}${git_branch}${git_status}${character}"""
 
 [hostname]
 ssh_only = false
-format   = "[❮❮](fg:#6e5494) [$hostname](fg:#6cc644) "
+format   = "[❮❮](fg:#a371f7) [$hostname](fg:#58a6ff) "
 
 [directory]
 truncate_to_repo = true
-format           = "[│](fg:#6e5494) [$path](fg:#6cc644)([${read_only}](fg:red)) "
+format           = "[│](fg:#a371f7) [$path](fg:#58a6ff)([${read_only}](fg:red)) "
 read_only        = " (RO)"
 
 [git_branch]
-format = '([│](fg:#6e5494) [$branch](fg:#6cc644) )'
+format = '([│](fg:#a371f7) [$branch](fg:#58a6ff) )'
 
 [git_status]
 format     = "($conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead_behind)"
 conflicted = "[${count} ](fg:#da3633)"
 staged     = "[+${count} ](fg:#58a6ff)"
-untracked  = "[U${count} ](fg:#ff7b72)"
+untracked  = "[U${count} ](fg:#76e3ea)"
 modified   = "[M${count} ](fg:#d29922)"
 renamed    = "[R${count} ](fg:#d29922)"
 deleted    = "[D${count} ](fg:#da3633)"
-stashed    = "[S${count} ](fg:#6e5494)"
+stashed    = "[S${count} ](fg:#a371f7)"
 ahead      = "[A${count} ](fg:#3fb950)"
 behind     = "[B${count} ](fg:#804142)"
 
 [character]
-success_symbol = "[❯❯](fg:#6e5494)"
-error_symbol   = "[❯❯](fg:#6e5494)"
+success_symbol = "[❯❯](fg:#a371f7)"
+error_symbol   = "[❯❯](fg:#a371f7)"
