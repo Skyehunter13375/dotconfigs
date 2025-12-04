@@ -1,29 +1,300 @@
-format = """${hostname}${directory}${git_branch}${git_status}${character}"""
+palette = "mytheme"
+
+[palettes.mytheme]
+fg_main      = "#5c6370"
+fg_error     = "#da3633"
+fg_added     = "#58a6ff"
+fg_untracked = "#ff7b72"
+fg_modified  = "#d29922"
+fg_stashed   = "#6e5494"
+fg_ahead     = "#3fb950"
+fg_behind    = "#804142"
+
+format = """${hostname}${directory}${git_branch}${git_status}\n${character}"""
 
 [hostname]
 ssh_only = false
-format   = "[❮❮](fg:#a371f7) [$hostname](fg:#58a6ff) "
+format   = "[┏━ ](fg:fg_main)[$hostname](fg:fg_main)[ ━┓](fg:fg_main)"
 
 [directory]
 truncate_to_repo = true
-format           = "[│](fg:#a371f7) [$path](fg:#58a6ff)([${read_only}](fg:red)) "
+format           = "[┏━ ](fg:fg_main)[$path](fg:fg_main)([${read_only}](fg:fg_untracked))[ ━┓](fg:fg_main)"
 read_only        = " (RO)"
 
 [git_branch]
-format = '([│](fg:#a371f7) [$branch](fg:#58a6ff) )'
+format = '([┏━ ](fg:fg_main)[$branch](fg:fg_main) )'
 
 [git_status]
-format     = "($conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead_behind)"
-conflicted = "[${count} ](fg:#da3633)"
-staged     = "[+${count} ](fg:#58a6ff)"
-untracked  = "[U${count} ](fg:#76e3ea)"
-modified   = "[M${count} ](fg:#d29922)"
-renamed    = "[R${count} ](fg:#d29922)"
-deleted    = "[D${count} ](fg:#da3633)"
-stashed    = "[S${count} ](fg:#a371f7)"
-ahead      = "[A${count} ](fg:#3fb950)"
-behind     = "[B${count} ](fg:#804142)"
+format     = "([━ ](fg:fg_main)$conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead_behind)[━┓](fg:fg_main)"
+conflicted = "[C${count} ](fg:fg_error)"
+staged     = "[+${count} ](fg:fg_main)"
+untracked  = "[U${count} ](fg:fg_main)"
+modified   = "[M${count} ](fg:fg_main)"
+renamed    = "[R${count} ](fg:fg_main)"
+deleted    = "[D${count} ](fg:fg_untracked)"
+stashed    = "[S${count} ](fg:fg_added)"
+ahead      = "[A${count} ](fg:fg_ahead)"
+behind     = "[B${count} ](fg:fg_error)"
 
 [character]
-success_symbol = "[❯❯](fg:#a371f7)"
-error_symbol   = "[❯❯](fg:#a371f7)"
+success_symbol = "[┗❯](fg:fg_main)"
+error_symbol   = "[┗❯](fg:fg_main)"
+
+[aws]
+disabled = true
+
+[azure]
+disabled = true
+
+[battery]
+disabled = true
+
+[buf]
+disabled = true
+
+[bun]
+disabled = true
+
+[c]
+disabled = true
+
+[cmake]
+disabled = true
+
+[cmd_duration]
+disabled = true
+
+[cobol]
+disabled = true
+
+[conda]
+disabled = true
+
+[container]
+disabled = true
+
+[cpp]
+disabled = true
+
+[crystal]
+disabled = true
+
+[daml]
+disabled = true
+
+[dart]
+disabled = true
+
+[deno]
+disabled = true
+
+[direnv]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[erlang]
+disabled = true
+
+[fennel]
+disabled = true
+
+[fortran]
+disabled = true
+
+[fossil_branch]
+disabled = true
+
+[fossil_metrics]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[gleam]
+disabled = true
+
+[golang]
+disabled = true
+
+[gradle]
+disabled = true
+
+[guix_shell]
+disabled = true
+
+[haskell]
+disabled = true
+
+[haxe]
+disabled = true
+
+[helm]
+disabled = true
+
+[hg_branch]
+disabled = true
+
+[java]
+disabled = true
+
+[jobs]
+disabled = true
+
+[julia]
+disabled = true
+
+[kotlin]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[localip]
+disabled = true
+
+[lua]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[meson]
+disabled = true
+
+[mise]
+disabled = true
+
+[mojo]
+disabled = true
+
+[nats]
+disabled = true
+
+[netns]
+disabled = true
+
+[nim]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[odin]
+disabled = true
+
+[opa]
+disabled = true
+
+[openstack]
+disabled = true
+
+[os]
+disabled = true
+
+[package]
+disabled = true
+
+[perl]
+disabled = true
+
+[php]
+disabled = true
+
+[pijul_channel]
+disabled = true
+
+[pixi]
+disabled = true
+
+[pulumi]
+disabled = true
+
+[purescript]
+disabled = true
+
+[python]
+disabled = true
+
+[quarto]
+disabled = true
+
+[raku]
+disabled = true
+
+[red]
+disabled = true
+
+[rlang]
+disabled = true
+
+[ruby]
+disabled = true
+
+[rust]
+disabled = true
+
+[scala]
+disabled = true
+
+[shell]
+disabled = true
+
+[singularity]
+disabled = true
+
+[solidity]
+disabled = true
+
+[spack]
+disabled = true
+
+[status]
+disabled = true
+
+[sudo]
+disabled = true
+
+[swift]
+disabled = true
+
+[terraform]
+disabled = true
+
+[time]
+disabled = true
+
+[typst]
+disabled = true
+
+[vagrant]
+disabled = true
+
+[vcsh]
+disabled = true
+
+[vlang]
+disabled = true
+
+[xmake]
+disabled = true
+
+[zig]
+disabled = true
+
