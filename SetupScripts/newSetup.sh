@@ -1,14 +1,6 @@
-# ################################## #
-# DO THIS BEFORE RUNNING THIS SCRIPT #
-# ################################## #
-# sudo dnf install git gh
-# git config --global user.name ""
-# git config --global user.email ""
-# gh auth login
-# mkdir ~/Projects
-# git clone https://github.com/Skyehunter13375/dotconfigs.git ~/Projects/dotconfigs
-# ~/Projects/dotconfigs/SetupScripts/newSetup.sh
-
+# TODO:
+# [ ] Add steps for building .pgpass
+# [ ] Fix the broken pg_hba.conf update, permissions issue
 
 projDir="${HOME}/Projects"
 confDir="${projDir}/dotconfigs"
