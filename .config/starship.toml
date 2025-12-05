@@ -14,18 +14,21 @@ format = """${hostname}${directory}${git_branch}${git_status}\n${character}"""
 
 [hostname]
 ssh_only = false
-format   = "[┏━ ](fg:fg_main)[$hostname](fg:fg_main)[ ━┓](fg:fg_main)"
+# format   = "[┏━ ](fg:fg_main)[$hostname](fg:fg_main)[ ━┓](fg:fg_main)"
+format   = '''[\[ ](fg:fg_main)[$hostname](fg:fg_main)[ \]](fg:fg_main)'''
 
 [directory]
 truncate_to_repo = true
-format           = "[┏━ ](fg:fg_main)[$path](fg:fg_main)([${read_only}](fg:fg_untracked))[ ━┓](fg:fg_main)"
+# format         = "[┏━ ](fg:fg_main)[$path](fg:fg_main)([${read_only}](fg:fg_untracked))[ ━┓](fg:fg_main)"
+format           = '''[\[ ](fg:fg_main)[$path](fg:fg_main)(\[${read_only}\](fg:fg_untracked))[ \]](fg:fg_main)'''
 read_only        = " (RO)"
 
 [git_branch]
-format = '([┏━ ](fg:fg_main)[$branch](fg:fg_main) )'
+# format = '([┏━ ](fg:fg_main)[$branch](fg:fg_main) )'
+format = '''([\[ ](fg:fg_main)[$branch](fg:fg_main) )'''
 
 [git_status]
-format     = "([━ ](fg:fg_main)$conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead_behind)[━┓](fg:fg_main)"
+format     = '''([- ](fg:fg_main)$conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead_behind)[\]](fg:fg_main)'''
 conflicted = "[C${count} ](fg:fg_error)"
 staged     = "[+${count} ](fg:fg_main)"
 untracked  = "[U${count} ](fg:fg_main)"
@@ -37,8 +40,10 @@ ahead      = "[A${count} ](fg:fg_ahead)"
 behind     = "[B${count} ](fg:fg_error)"
 
 [character]
-success_symbol = "[┗❯](fg:fg_main)"
-error_symbol   = "[┗❯](fg:fg_main)"
+# success_symbol = "[┗❯](fg:fg_main)"
+# error_symbol   = "[┗❯](fg:fg_main)"
+success_symbol = "[❯](fg:fg_ahead)"
+error_symbol   = "[❯](fg:fg_ahead)"
 
 [aws]
 disabled = true
@@ -107,9 +112,6 @@ disabled = true
 disabled = true
 
 [fennel]
-disabled = true
-
-[fortran]
 disabled = true
 
 [fossil_branch]
@@ -292,9 +294,5 @@ disabled = true
 [vlang]
 disabled = true
 
-[xmake]
-disabled = true
-
 [zig]
 disabled = true
-
