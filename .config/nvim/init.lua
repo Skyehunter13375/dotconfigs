@@ -55,22 +55,15 @@ local comment_prefix = {
   php    = "// ",
   c      = "// ",
   cpp    = "// ",
+  lua    = "-- ",
   bash   = "# ",
   sh     = "# ",
   python = "# ",
 }
 
-local function comment_block()
-  local ft = vim.bo.filetype
-  local prefix = comment_prefix[ft] or "// "
-  vim.cmd("normal! I" .. prefix)
+local function nvim_config_search()
+    builtin.find_files { cwd = vim.fn.stdpath 'config' }
 end
-
-vim.keymap.set("v", "<C-C>", comment_block, {
-  noremap = true,
-  silent  = true,
-  desc    = "Comment selected block",
-})
 
 
 -- ┣━━━━━━━━━━━━━━━━━━━━━━┫ Setting My Preferred Keybinds ┣━━━━━━━━━━━━━━━━━━━━━━━┫ --
@@ -81,11 +74,25 @@ vim.keymap.set('n', '<C-h>',      '<C-w><C-h>',                           {desc=
 vim.keymap.set('n', '<C-l>',      '<C-w><C-l>',                           {desc='Move focus to the right window' })
 vim.keymap.set('n', '<C-j>',      '<C-w><C-j>',                           {desc='Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>',      '<C-w><C-k>',                           {desc='Move focus to the upper window' })
+vim.keymap.set('n', '<leader>fs', ':Neotree filesystem reveal left<CR>',  {desc='Show Neotree'})
 vim.keymap.set('n', '<leader>sf', builtin.find_files,                     {desc='Treesitter Fuzzyfind Files' })
 vim.keymap.set('n', '<leader>sg', builtin.live_grep,                      {desc='Treesitter Fuzzyfind Grep'})
-vim.keymap.set('n', '<leader>fs', ':Neotree filesystem reveal left<CR>',  {desc='Show Neotree'})
-vim.keymap.set('n', '<leader>w',  ':w!<CR>',                              {desc='Write to file'})
-vim.keymap.set('v', '<leader>//', ":'<,'>normal! I// <CR>",               {desc='Comment selected block', silent=true})
-vim.keymap.set('n', '<leader>//', ":normal! I// <CR>",                    {desc='Comment current line',   silent=true})
-vim.keymap.set('n', '<leader>sn', function() builtin.find_files { cwd = vim.fn.stdpath 'config' } end, { desc = "Seach NeoVim config files" })
+vim.keymap.set('n', '<leader>sn', nvim_config_search,                   {desc = "Seach NeoVim config files" })
+
+vim.keymap.set('v', '<leader>//', function()
+  local ft = vim.bo.filetype
+  local prefix = comment_prefix[ft] or "// "
+  -- Run an Ex command directly (NOT via lua) so '<,'> is valid
+  vim.api.nvim_feedkeys(
+    vim.api.nvim_replace_termcodes(":'<,'>normal! I" .. prefix .. "<CR>", true, false, true),
+    "n",
+    false
+  )
+end, { desc = "Comment selected block", silent = true })
+
+vim.keymap.set('n', '<leader>//', function()
+  local ft = vim.bo.filetype
+  local prefix = comment_prefix[ft] or "// "
+  vim.cmd("normal! I" .. prefix)
+end, { desc = "Comment current line", silent = true })
 

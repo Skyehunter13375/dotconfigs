@@ -20,12 +20,12 @@ format   = '''[\[ ](fg:fg_main)[$hostname](fg:fg_main)[ \]](fg:fg_main)'''
 [directory]
 truncate_to_repo = true
 # format         = "[┏━ ](fg:fg_main)[$path](fg:fg_main)([${read_only}](fg:fg_untracked))[ ━┓](fg:fg_main)"
-format           = '''[\[ ](fg:fg_main)[$path](fg:fg_main)(\[${read_only}\](fg:fg_untracked))[ \]](fg:fg_main)'''
+format           = '''[ \[ ](fg:fg_main)[$path](fg:fg_main)(\[${read_only}\](fg:fg_untracked))[ \]](fg:fg_main)'''
 read_only        = " (RO)"
 
 [git_branch]
 # format = '([┏━ ](fg:fg_main)[$branch](fg:fg_main) )'
-format = '''([\[ ](fg:fg_main)[$branch](fg:fg_main) )'''
+format = '''( [\[ ](fg:fg_main)[$branch](fg:fg_main) )'''
 
 [git_status]
 format     = '''([- ](fg:fg_main)$conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead_behind)[\]](fg:fg_main)'''
