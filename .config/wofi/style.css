@@ -1,0 +1,100 @@
+@define-color surface0     #0d1117;  /* GitHub bg.base */
+@define-color surface0-rgb rgb(13,17,23);
+
+@define-color surface1     #161b22;  /* GitHub elevated surface */
+@define-color surface1-rgb rgb(22,27,34);
+
+@define-color surface2     #30363d;  /* GitHub border/subtle surface */
+@define-color surface2-rgb rgb(48,54,61);
+
+@define-color text         #c9d1d9;  /* GitHub primary text */
+@define-color text-rgb     rgb(201,209,217);
+
+@define-color sapphire     #58a6ff;  /* GitHub accent blue */
+@define-color sapphire-rgb rgb(88,166,255);
+
+@define-color red          #f85149;  /* GitHub danger/red */
+@define-color red-rgb      rgb(248,81,73);
+
+
+{
+  font-family: 'CaskaydiaCove Nerd Font', monospace;
+  font-size: 18px;
+}
+
+window {
+  margin: 0px;
+  padding: 5px;
+  border: 1px solid @surface2; /* GitHub-style neutral border */
+  border-radius: 6px;
+  background-color: @surface0; /* Layered neutral background */
+}
+
+#outer-box {
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  background-color: @surface0;
+}
+
+#inner-box {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid;
+  border-color: @surface2;
+  background-color: @surface0; /* Subtle contrast layer */
+}
+
+#scroll {
+  margin: 0px;
+  padding: 10px;
+  border: none;
+  background-color: @surface0;
+}
+
+#input {
+  margin: 5px 20px;
+  padding: 10px;
+  border: 1px solid @surface2; /* GitHub input border */
+  border-radius: 4px;
+  color: @text;
+  background-color: @surface1; /* GitHub-style darker field */
+}
+
+#input image {
+    border: none;
+    color: @sapphire; /* GitHub blue accent */
+}
+
+#input * {
+  outline: none !important; /* GitHub does not use thick outlines */
+}
+
+#text {
+  margin: none;
+  border: none;
+  color: @text; /* Keep high contrast text */
+}
+
+#entry {
+  background-color: @surface0;
+}
+
+#entry arrow {
+  border: none;
+  color: @sapphire; /* Accent color */
+}
+
+#entry:selected {
+  background-color: @surface1; /* Subtle background shift */
+  border: 1px solid @sapphire; /* Accent border similar to GitHub selection */
+}
+
+#entry:selected #text {
+  color: @sapphire; /* Blue accent text */
+}
+
+#entry:drop(active) {
+  background-color: @red !important; /* Keep this explicit visual indicator */
+}
+

@@ -40,7 +40,7 @@ comment() {
 
 comment_block() {
     local text="$*"
-    local width=132
+    local width=80
     local inner_width=$((width - 4))  # account for borders and spacing
     local text_len=${#text}
 
@@ -65,7 +65,6 @@ comment_block() {
     echo "$middle"
     echo "$bottom"
 }
-
 alias p='psql -d spacetraders'
 alias vi='nvim'
 alias vim='nvim'

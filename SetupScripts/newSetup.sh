@@ -1,6 +1,8 @@
 # TODO:
 # [ ] Add steps for building .pgpass
 # [ ] Fix the broken pg_hba.conf update, permissions issue
+# [ ] Add steps to remove preinstalled bloat in Fedora
+# [ ] Double check steps and links for hyprland configs
 
 projDir="${HOME}/Projects"
 confDir="${projDir}/dotconfigs"
@@ -17,8 +19,9 @@ sudo dnf update -y
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing packages ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
 sudo dnf copr enable varlad/yazi -y
-sudo dnf install -y nvim tmux kitty btop golang php postgresql-server discord yazi jq
+sudo dnf install -y nvim tmux kitty btop golang php postgresql-server discord yazi hyprland
 
+sudo dnf remove hexchat thunderbird xfburn transmission rhythmbox
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing Starship ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
 curl -sS https://starship.rs/install.sh | sh
@@ -46,6 +49,15 @@ ls -la ~/.config/nvim
 ln -sf ${confDir}/.config/kitty ~/.config/kitty
 ls -la ~/.config/kitty
 
+ln -sf ${confDir}/.config/hypr ~/.config/hypr
+ls -la ~/.config/hypr
+
+ln -sf ${confDir}/.config/wofi ~/.config/wofi
+ls -la ~/.config/wofi
+
+ln -sf ${confDir}/.config/waybar ~/.config/waybar
+ls -la ~/.config/waybar
+
 ln -sf ${confDir}/.config/starship.toml ~/.config/starship.toml
 ls -la ~/.config/starship.toml
 
@@ -54,6 +66,7 @@ ls -la ~/.tmux.conf
 
 ln -sf ${confDir}/.bashrc ~/.bashrc
 ls -la ~/.bashrc
+
 
 mkdir ~/Applications
 
