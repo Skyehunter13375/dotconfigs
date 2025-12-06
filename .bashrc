@@ -68,9 +68,6 @@ comment_block() {
 alias p='psql -d spacetraders'
 alias vi='nvim'
 alias vim='nvim'
-alias dragoon='ssh skyehunter@10.10.1.25'
-alias paladin='ssh skyehunter@10.10.1.26'
-alias summoner='ssh skyehunter@10.10.1.27'
 alias tree='tree -aI .git --dirsfirst'
 
 eval "$(starship init bash)"

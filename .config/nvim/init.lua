@@ -67,17 +67,18 @@ end
 
 
 -- ┣━━━━━━━━━━━━━━━━━━━━━━┫ Setting My Preferred Keybinds ┣━━━━━━━━━━━━━━━━━━━━━━━┫ --
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>',                          {desc='Exit terminal mode' })
-vim.keymap.set('n', '<C-w>v',     ':vnew<CR>',                            {desc='Split current window vertically' })
-vim.keymap.set('n', '<C-w>V',     ':new<CR>',                             {desc='Split current window Horizontally' })
-vim.keymap.set('n', '<C-h>',      '<C-w><C-h>',                           {desc='Move focus to the left window' })
-vim.keymap.set('n', '<C-l>',      '<C-w><C-l>',                           {desc='Move focus to the right window' })
-vim.keymap.set('n', '<C-j>',      '<C-w><C-j>',                           {desc='Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>',      '<C-w><C-k>',                           {desc='Move focus to the upper window' })
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>',                          {desc='Exit terminal mode'})
+vim.keymap.set('n', 'q',          '',                                     {desc='Removed keybind for recording'})
+vim.keymap.set('n', '<C-w>v',     ':vnew<CR>',                            {desc='Split current window vertically'})
+vim.keymap.set('n', '<C-w>V',     ':new<CR>',                             {desc='Split current window Horizontally'})
+vim.keymap.set('n', '<C-h>',      '<C-w><C-h>',                           {desc='Move focus to the left window'})
+vim.keymap.set('n', '<C-l>',      '<C-w><C-l>',                           {desc='Move focus to the right window'})
+vim.keymap.set('n', '<C-j>',      '<C-w><C-j>',                           {desc='Move focus to the lower window'})
+vim.keymap.set('n', '<C-k>',      '<C-w><C-k>',                           {desc='Move focus to the upper window'})
 vim.keymap.set('n', '<leader>fs', ':Neotree filesystem reveal left<CR>',  {desc='Show Neotree'})
-vim.keymap.set('n', '<leader>sf', builtin.find_files,                     {desc='Treesitter Fuzzyfind Files' })
+vim.keymap.set('n', '<leader>sf', builtin.find_files,                     {desc='Treesitter Fuzzyfind Files'})
 vim.keymap.set('n', '<leader>sg', builtin.live_grep,                      {desc='Treesitter Fuzzyfind Grep'})
-vim.keymap.set('n', '<leader>sn', nvim_config_search,                   {desc = "Seach NeoVim config files" })
+vim.keymap.set('n', '<leader>sn', nvim_config_search,                     {desc = "Seach NeoVim config files"})
 
 vim.keymap.set('v', '<leader>//', function()
   local ft = vim.bo.filetype

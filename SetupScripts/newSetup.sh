@@ -1,8 +1,9 @@
 # TODO:
 # [ ] Add steps for building .pgpass
-# [ ] Fix the broken pg_hba.conf update, permissions issue
-# [ ] Add steps to remove preinstalled bloat in Fedora
 # [ ] Double check steps and links for hyprland configs
+# [x] Fix the broken pg_hba.conf update, permissions issue
+# [x] Fix the broken postgresql-server install. It doesn't create perms correctly
+# [x] Add steps to remove preinstalled bloat in Fedora
 
 projDir="${HOME}/Projects"
 confDir="${projDir}/dotconfigs"
@@ -20,7 +21,7 @@ sudo dnf update -y
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing packages ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
 sudo dnf copr enable varlad/yazi -y
 sudo dnf copr enable solopasha/hyprland
-sudo dnf install -y nvim tmux kitty btop golang php postgresql-server discord yazi hyprland
+sudo dnf install -y nvim tmux kitty btop golang php postgresql-server discord yazi hyprland hyprpaper
 
 sudo dnf remove hexchat thunderbird xfburn transmission rhythmbox
 
@@ -80,6 +81,8 @@ sudo ls -la /root/.config/nvim
 sudo ln -sf "$HOME/.bashrc" /root/.bashrc
 sudo ls -la /root/.bashrc
 
+sudo ln -sf "$HOME/.config/starship.toml" /root/.config/starship.toml
+sudo ls -la /root/.config/starship.toml
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━┫ Set up PostgreSQL Database ┣━━━━━━━━━━━━━━━━━━━━━━━━┫'
 sudo postgresql-setup --initdb
@@ -87,19 +90,14 @@ sudo systemctl start postgresql
 sudo systemctl enable postgresql
 sudo -i -u postgres createdb spacetraders
 sudo -i -u postgres createuser skyehunter -P
-sudo -i -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE spacetraders TO skyehunter;"
-sudo -i -u postgres psql -c "GRANT ALL PRIVILEGES ON SCHEMA public TO skyehunter;'
-
-echo '
-# TYPE  DATABASE        USER            ADDRESS                 METHOD
-local   all             all                                     md5   # "local" is for Unix domain socket connections only
-host    all             all             127.0.0.1/32            md5   # IPv4 local connections:
-host    all             all             ::1/128                 md5   # IPv6 local connections:
-local   replication     all                                     peer  # Allow replication connections from localhost, by a user with the replication privilege.
-host    replication     all             127.0.0.1/32            ident # Allow replication connections from localhost, by a user with the replication privilege.
-host    replication     all             ::1/128                 ident # Allow replication connections from localhost, by a user with the replication privilege.
-' > /var/lib/pgsql/data/pg_hba.conf
+sudo -i -u postgres psql -d spacetraders -c "GRANT ALL PRIVILEGES ON DATABASE spacetraders TO skyehunter;"
+sudo -i -u postgres psql -d spacetraders -c "GRANT ALL PRIVILEGES ON DATABASE spacetraders TO skyehunter;"
+sudo -i -u postgres psql -d spacetraders -c "GRANT ALL PRIVILEGES ON SCHEMA public TO skyehunter;"
+sudo cp -f ~/Projects/dotconfigs/SetupScripts/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf
+sudo chown postgresql:postgresql /var/lib/pgsql/data/pg_hba.conf
+sudo chmod 600 /var/libpgsql-data/pg_hba.conf
+sudo sysemctl restart postgresql
 
 echo 'All done'
-echo 'Go download Obsidian and stick the appimage in ~/Applications if you want'
+echo 'Go download Obsidian -- I think I used the flatpak on my desktop....need to confirm'
 

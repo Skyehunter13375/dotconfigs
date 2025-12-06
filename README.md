@@ -11,24 +11,43 @@ I wanted a standardized setup script for brand new RHEL based systems so I can s
 - ~/Projects/dotconfigs/SetupScripts/newSetup.sh
 
 # Milestones
-- [x] Updates & Installs
-    - [x] RPMFusion
-    - [x] NeoVim
-    - [x] Tmux
-    - [x] Kitty
-    - [x] Btop
-    - [x] Golang
-    - [x] PHP
-    - [x] PostgreSQL Server
-    - [x] Discord
-    - [x] Yazi
-    - [x] Starship
-    - [x] CaskaydiaCove Nerd Font
-    - [ ] Google Chrome (Not sure if I really want this)
+- Updates & Installs
+    - [x] Package Management
+        - [x] RPMFusion
+    - [ ] Desktop Environment
+        - [x] Hyprland
+        - [x] Hyprpaper
+        - [ ] Hyprshot
+        - [x] Waybar 
+    - [x] Editors & Terminal Tools
+        - [x] NeoVim
+        - [x] Tmux
+        - [x] Kitty
+        - [x] Btop
+        - [x] Yazi
+        - [x] Starship
+        - [x] CaskaydiaCove Nerd Font
+    - [x] Programming & Databases
+        - [x] Golang
+        - [x] PHP
+        - [x] PostgreSQL Server
+    - [x] Comms
+        - [x] Discord
+    - [ ] Browsers
+        - [ ] Brave
+        - [ ] Google Chrome (Not sure if I really want this)
 
-- [x] Setup Steps Automated
+- Removes default Fedora bloat
+    - [x] Thunderbird
+    - [x] Pidgin
+    - [x] Xfburn
+    - [x] Hexchat
+    - [x] Transmission
+    - [x] Rhythmbox
+
+- Setup Steps Automated
     - [x] Starship
     - [x] Symlinks for root user
     - [x] Symlinks for .config
     - [x] Initialize Postgres DB
-        - [ ] Create tables and set up SpaceTraders content
+        - [x] Table creation delegated to my Spacetraders setup repo
