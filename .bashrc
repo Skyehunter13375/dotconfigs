@@ -65,6 +65,7 @@ comment_block() {
     echo "$middle"
     echo "$bottom"
 }
+alias s='sqlite3 ~/Projects/SpaceTraders/build/SpaceTraders.db'
 alias p='psql -d spacetraders'
 alias vi='nvim'
 alias vim='nvim'

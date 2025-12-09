@@ -21,9 +21,9 @@ sudo dnf update -y
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing packages ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
 sudo dnf copr enable varlad/yazi -y
 sudo dnf copr enable solopasha/hyprland
-sudo dnf install -y nvim tmux kitty btop golang php postgresql-server discord yazi hyprland hyprpaper
+sudo dnf install -y nvim tmux kitty btop golang php postgresql-server discord yazi hyprland hyprpaper thunar
 
-sudo dnf remove hexchat thunderbird xfburn transmission rhythmbox
+sudo dnf remove hexchat thunderbird xfburn transmission rhythmbox nemo
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing Starship ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
 curl -sS https://starship.rs/install.sh | sh

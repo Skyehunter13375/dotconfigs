@@ -1,0 +1,5 @@
+.headers on
+.mode markdown
+.nullvalue NULL
+PRAGMA detailed_errors = ON;
+PRAGMA foreign_keys    = ON;
