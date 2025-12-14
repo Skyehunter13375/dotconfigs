@@ -21,7 +21,6 @@ I wanted a standardized setup script for brand new RHEL based systems so I can s
         - [x] Waybar 
     - [x] Editors & Terminal Tools
         - [x] NeoVim
-        - [x] Tmux
         - [x] Kitty
         - [x] Btop
         - [x] Yazi
