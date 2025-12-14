@@ -19,9 +19,10 @@ sudo dnf update -y
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing packages ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
+# NOTE: Why Fedore comes standard with fuse but not fuse-libs I don't know
 sudo dnf copr enable varlad/yazi -y
 sudo dnf copr enable solopasha/hyprland
-sudo dnf install -y nvim tmux kitty btop golang php postgresql-server discord yazi hyprland hyprpaper thunar
+sudo dnf install -y nvim tmux kitty btop golang php postgresql-server discord yazi hyprland hyprpaper thunar fuse-libs
 
 sudo dnf remove hexchat thunderbird xfburn transmission rhythmbox nemo
 

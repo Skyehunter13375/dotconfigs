@@ -27,10 +27,10 @@ return {
         multiline         = true,
         multiline_pattern = "^.",
         multiline_context = 10,
-        before            = "fg", -- "fg" or "bg" or empty
+        before            = "fg",      -- "fg" or "bg" or empty
         keyword           = "wide_bg", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty
-        after             = "fg", -- "fg" or "bg" or empty
-        pattern           = [[.*<(KEYWORDS)\s*:]],
+        after             = "fg",      -- "fg" or "bg" or empty
+        pattern           = [[.*(KEYWORDS)\s*:]],
         comments_only     = true,
         max_line_len      = 400,
         exclude           = {},
@@ -47,5 +47,5 @@ return {
         pattern = [[\b(KEYWORDS):]], -- ripgrep regex
         -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
       },
-  }
+  },
 }
