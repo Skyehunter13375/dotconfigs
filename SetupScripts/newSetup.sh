@@ -61,6 +61,9 @@ ls -la ~/.config/wofi
 ln -sf ${confDir}/.config/waybar ~/.config/waybar
 ls -la ~/.config/waybar
 
+ln -sf ${confDir}/.config/yazi ~/.config/yazi
+ls -la ~/.config/yazi
+
 ln -sf ${confDir}/.config/starship.toml ~/.config/starship.toml
 ls -la ~/.config/starship.toml
 
