@@ -1,5 +1,4 @@
 # TODO:
-# [ ] Add steps for building .pgpass
 # [ ] Double check steps and links for hyprland configs
 # [x] Fix the broken pg_hba.conf update, permissions issue
 # [x] Fix the broken postgresql-server install. It doesn't create perms correctly
@@ -15,16 +14,15 @@ ccfonts="${fontDir}/CascadiaCodeNerdFonts"
 echo '┣━━━━━━━━━━━━━━━━━━┫ Installing RPMFusion (Free + Non-Free) ┣━━━━━━━━━━━━━━━━━━┫'
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf copr enable varlad/yazi -y
+sudo dnf copr enable solopasha/hyprland
 sudo dnf update -y
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing packages ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
-# NOTE: Why Fedore comes standard with fuse but not fuse-libs I don't know
-sudo dnf copr enable varlad/yazi -y
-sudo dnf copr enable solopasha/hyprland
-sudo dnf install -y nvim kitty btop golang php postgresql-server discord yazi hyprland hyprpaper thunar fuse-libs
-
+sudo dnf install -y nvim kitty btop golang php discord yazi hyprland hyprpaper thunar fuse-libs
 sudo dnf remove hexchat thunderbird xfburn transmission rhythmbox nemo
+
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing Starship ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
 curl -sS https://starship.rs/install.sh | sh
@@ -89,19 +87,20 @@ sudo ln -sf "$HOME/.config/starship.toml" /root/.config/starship.toml
 sudo ls -la /root/.config/starship.toml
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━┫ Set up PostgreSQL Database ┣━━━━━━━━━━━━━━━━━━━━━━━━┫'
-sudo postgresql-setup --initdb
-sudo systemctl start postgresql
-sudo systemctl enable postgresql
-sudo -i -u postgres createdb spacetraders
-sudo -i -u postgres createuser skyehunter -P
-sudo -i -u postgres psql -d spacetraders -c "GRANT ALL PRIVILEGES ON DATABASE spacetraders TO skyehunter;"
-sudo -i -u postgres psql -d spacetraders -c "GRANT ALL PRIVILEGES ON DATABASE spacetraders TO skyehunter;"
-sudo -i -u postgres psql -d spacetraders -c "GRANT ALL PRIVILEGES ON SCHEMA public TO skyehunter;"
-sudo cp -f ~/Projects/dotconfigs/SetupScripts/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf
-sudo chown postgresql:postgresql /var/lib/pgsql/data/pg_hba.conf
-sudo chmod 600 /var/libpgsql-data/pg_hba.conf
-sudo sysemctl restart postgresql
+# INFO: Not required any longer - switched to SQLite for all projects
+# sudo postgresql-setup --initdb
+# sudo systemctl start postgresql
+# sudo systemctl enable postgresql
+# sudo -i -u postgres createdb spacetraders
+# sudo -i -u postgres createuser skyehunter -P
+# sudo -i -u postgres psql -d spacetraders -c "GRANT ALL PRIVILEGES ON DATABASE spacetraders TO skyehunter;"
+# sudo -i -u postgres psql -d spacetraders -c "GRANT ALL PRIVILEGES ON DATABASE spacetraders TO skyehunter;"
+# sudo -i -u postgres psql -d spacetraders -c "GRANT ALL PRIVILEGES ON SCHEMA public TO skyehunter;"
+# sudo cp -f ~/Projects/dotconfigs/SetupScripts/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf
+# sudo chown postgresql:postgresql /var/lib/pgsql/data/pg_hba.conf
+# sudo chmod 600 /var/libpgsql-data/pg_hba.conf
+# sudo sysemctl restart postgresql
 
 echo 'All done'
-echo 'Go download Obsidian -- I think I used the flatpak on my desktop....need to confirm'
+echo 'You can download the Obsidian.appimage and stick it in ~/Applications if you'd like'
 

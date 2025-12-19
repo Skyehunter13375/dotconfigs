@@ -69,7 +69,7 @@ end
 -- ┣━━━━━━━━━━━━━━━━━━━━━━┫ Setting My Preferred Keybinds ┣━━━━━━━━━━━━━━━━━━━━━━━┫ --
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>',                          {desc='Exit terminal mode'})
 vim.keymap.set('n', 'q',          '',                                     {desc='Removed keybind for recording'})
-vim.keymap.set('n', 'F1',         '',                                     {desc='Removed keybind for Nvim Help'})
+vim.keymap.set('n', '<F1>',       '',                                     {desc='Removed keybind for Nvim Help'})
 vim.keymap.set('n', '<C-w>v',     ':vnew<CR>',                            {desc='Split current window vertically'})
 vim.keymap.set('n', '<C-w>V',     ':new<CR>',                             {desc='Split current window Horizontally'})
 vim.keymap.set('n', '<C-h>',      '<C-w><C-h>',                           {desc='Move focus to the left window'})
