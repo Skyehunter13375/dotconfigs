@@ -20,7 +20,7 @@ sudo dnf update -y
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing packages ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
-sudo dnf install -y nvim kitty btop golang php discord yazi hyprland hyprpaper thunar fuse-libs
+sudo dnf install -y nvim kitty btop golang php sqlite discord yazi hyprland hyprpaper thunar fuse-libs
 sudo dnf remove hexchat thunderbird xfburn transmission rhythmbox nemo
 
 
