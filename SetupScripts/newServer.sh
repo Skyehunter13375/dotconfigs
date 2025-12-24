@@ -15,7 +15,7 @@ sudo dnf update -y
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing packages ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
-sudo dnf install -y nvim kitty btop golang php yazi fuse-libs sqlite
+sudo dnf install -y bat nvim kitty btop golang php yazi fuse-libs sqlite
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing Starship ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
@@ -38,6 +38,9 @@ git clone https://github.com/Skyehunter13375/Spacetraders_Client.git ${projDir}/
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━┫ Creating config symlinks ┣━━━━━━━━━━━━━━━━━━━━━━━━━┫'
+ln -sf ${confDir}/.config/bat ~/.config/bat
+ls -la ~/.config/bat
+
 ln -sf ${confDir}/.config/nvim ~/.config/nvim
 ls -la ~/.config/nvim
 

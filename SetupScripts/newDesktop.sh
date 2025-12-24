@@ -20,7 +20,7 @@ sudo dnf update -y
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Installing packages ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫'
-sudo dnf install -y nvim kitty btop golang php sqlite discord yazi hyprland hyprpaper thunar fuse-libs
+sudo dnf install -y bat nvim kitty btop golang php sqlite discord yazi hyprland hyprpaper thunar fuse-libs
 sudo dnf remove hexchat thunderbird xfburn transmission rhythmbox nemo
 
 
@@ -44,6 +44,9 @@ git clone https://github.com/Skyehunter13375/Spacetraders_Client.git ${projDir}/
 
 
 echo '┣━━━━━━━━━━━━━━━━━━━━━━━━━┫ Creating config symlinks ┣━━━━━━━━━━━━━━━━━━━━━━━━━┫'
+ln -sf ${confDir}/.config/bat ~/.config/bat
+ls -la ~/.config/bat
+
 ln -sf ${confDir}/.config/nvim ~/.config/nvim
 ls -la ~/.config/nvim
 
