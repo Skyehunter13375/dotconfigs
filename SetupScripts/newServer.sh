@@ -68,21 +68,62 @@ sudo ls -la /root/.bashrc
 sudo ln -sf "$HOME/.config/starship.toml" /root/.config/starship.toml
 sudo ls -la /root/.config/starship.toml
 
-echo '┣━━━━━━━━━━━━━━━━━━━━━━━━┫ Set up PostgreSQL Database ┣━━━━━━━━━━━━━━━━━━━━━━━━┫'
-# INFO: Not required any longer - switched to SQLite for all projects
-# sudo postgresql-setup --initdb
-# sudo systemctl start postgresql
-# sudo systemctl enable postgresql
-# sudo -i -u postgres createdb spacetraders
-# sudo -i -u postgres createuser skyehunter -P
-# sudo -i -u postgres psql -d spacetraders -c "GRANT ALL PRIVILEGES ON DATABASE spacetraders TO skyehunter;"
-# sudo -i -u postgres psql -d spacetraders -c "GRANT ALL PRIVILEGES ON DATABASE spacetraders TO skyehunter;"
-# sudo -i -u postgres psql -d spacetraders -c "GRANT ALL PRIVILEGES ON SCHEMA public TO skyehunter;"
-# sudo cp -f ~/Projects/dotconfigs/SetupScripts/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf
-# sudo chown postgresql:postgresql /var/lib/pgsql/data/pg_hba.conf
-# sudo chmod 600 /var/libpgsql-data/pg_hba.conf
-# sudo sysemctl restart postgresql
-
 echo 'All done'
-echo 'You can download the Obsidian.appimage and stick it in ~/Applications if you'd like'
+echo 'You can download the Obsidian.appimage and stick it in ~/Applications if you want'
 
+
+
+# FEAT: For FoundryVTT
+# Note that Foundry REQUIRES node.js v20 and is not compatible with 22 yet.
+# Need to enable port 30000 through the firewall
+# FedoraServer uses a custom zone name instead of "public" which is the default
+
+# INFO: Poke holes in the local firewall
+# ❯ sudo firewall-cmd --zone=FedoraServer --add-port=30000/tcp
+# success
+# ❯ sudo firewall-cmd --zone=FedoraServer --add-port=30000/tcp --permanent
+# success
+
+# INFO: Start the server
+# node main.js --dataPath=$HOME/foundrydata/
+
+# INFO: Create systemctl service file: /etc/systemd/system/foundryvtt.service
+# [Unit]
+# Description=Foundry Virtual Tabletop
+# After=network.target
+# 
+# [Service]
+# Type=simple
+# User=skyehunter
+# Group=skyehunter
+# WorkingDirectory=/home/skyehunter/foundryvtt
+# ExecStart=/usr/bin/node main.js --dataPath=/home/skyehunter/foundrydata
+# Restart=always
+# RestartSec=10
+# Environment=NODE_ENV=production
+# 
+# # Hardening (safe defaults)
+# NoNewPrivileges=true
+# PrivateTmp=true
+# ProtectSystem=full
+# ProtectHome=false
+# 
+# [Install]
+# WantedBy=multi-user.target
+
+# INFO: Reload daemon list
+# ❯ sudo systemctl daemon-reexec
+# ❯ sudo systemctl daemon-reload
+
+# INFO: Enable
+# ❯ sudo systemctl enable --now foundryvtt
+# Created symlink '/etc/systemd/system/multi-user.target.wants/foundryvtt.service' → '/etc/systemd/system/foundryvtt.service'.
+
+# INFO: Start the service
+# skyehunter in [ Paladin ] [ ~/foundryvtt ]
+# ❯ sudo systemctl start foundryvtt
+
+
+# FEAT: 5etools setup
+# git clone https://github.com/5etools-mirror-3/5etools-src.git /var/www/html/5etools
+# git clone https://github.com/5etools-mirror-3/5etools-img.git /var/www/html/5etools/img

@@ -66,10 +66,12 @@ comment_block() {
     echo "$bottom"
 }
 alias s='sqlite3 ~/Projects/SpaceTraders/build/SpaceTraders.db'
-alias p='psql -d spacetraders'
 alias vi='nvim'
 alias vim='nvim'
 alias tree='tree -aI .git --dirsfirst'
+alias dragoon='ssh skyehunter@dragoon'
+alias paladin='ssh skyehunter@paladin'
+alias redmage='ssh skyehunter@redmage'
 
 eval "$(starship init bash)"
 # eval "fastfetch"

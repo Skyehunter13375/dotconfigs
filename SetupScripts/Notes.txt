@@ -1,0 +1,7 @@
+If steam starts then disappears, still running but repeatedly clicks like it's trying to open but cant: 
+1. Launch Steam from a terminal to get the GUI to load
+2. Open Steam Settings 
+3. Choose Interface
+4. Uncheck "Enable GPU accelerated rendering in web views"
+5. Safely exit steam and start from the icon outside of terminal to test
+
