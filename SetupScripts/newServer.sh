@@ -122,3 +122,16 @@ echo 'You can download the Obsidian.appimage and stick it in ~/Applications if y
 # FEAT: 5etools setup
 # git clone https://github.com/5etools-mirror-3/5etools-src.git /var/www/html/5etools
 # git clone https://github.com/5etools-mirror-3/5etools-img.git /var/www/html/5etools/img
+
+
+# FEAT: PiHole:
+# You must punch a hole in firewalld to allow DNS traffic. Blocked by default
+# firewall-cmd --permanent --add-service=http 
+# firewall-cmd --permanent --add-service=https 
+# firewall-cmd --permanent --add-service=dns 
+# firewall-cmd --permanent --add-service=dhcp 
+# firewall-cmd --permanent --add-service=dhcpv6 
+# firewall-cmd --permanent --add-service=ntp
+# firewall-cmd --permanent --new-zone=ftl
+# firewall-cmd --permanent --zone=ftl --add-interface=lo
+# firewall-cmd --reload
