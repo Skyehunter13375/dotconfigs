@@ -68,7 +68,6 @@ comment_block() {
 alias s='sqlite3 ~/Projects/SpaceTraders/build/SpaceTraders.db'
 alias vi='nvim'
 alias vim='nvim'
-alias cat='bat'
 alias tree='tree -aI .git --dirsfirst'
 alias dragoon='ssh skyehunter@dragoon'
 alias paladin='ssh skyehunter@paladin'
