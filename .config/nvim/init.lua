@@ -65,6 +65,15 @@ local function nvim_config_search()
     builtin.find_files { cwd = vim.fn.stdpath 'config' }
 end
 
+-- Resize by 1/4 of available screen space
+local function resize_quarter(sign)
+  local quarter = math.floor(vim.o.columns / 4)
+  vim.cmd("vertical resize " .. sign .. quarter)
+end
+
+vim.keymap.set("n", "<C-w><", function() resize_quarter("-") end, { noremap = true, silent = true })
+vim.keymap.set("n", "<C-w>>", function() resize_quarter("+") end, { noremap = true, silent = true })
+
 
 -- ┣━━━━━━━━━━━━━━━━━━━━━━┫ Setting My Preferred Keybinds ┣━━━━━━━━━━━━━━━━━━━━━━━┫ --
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>',                          {desc='Exit terminal mode'})
@@ -93,4 +102,5 @@ vim.keymap.set('n', '<leader>//', function()
   local prefix = comment_prefix[ft] or "// "
   vim.cmd("normal! I" .. prefix)
 end, { desc = "Comment current line", silent = true })
+
 

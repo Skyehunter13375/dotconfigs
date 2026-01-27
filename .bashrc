@@ -32,7 +32,7 @@ comment() {
     local pad_right=$((pad_total - pad_left))
 
     # construct the lines
-    local middle="┣$(printf '━%.0s' $(seq 1 ${pad_left}))┫ ${text} ┣$(printf '━%.0s' $(seq 1 ${pad_right}))┫"
+    local middle="<$(printf -- '-%.0s' $(seq 1 ${pad_left}))> ${text} <$(printf -- '-%.0s' $(seq 1 ${pad_right}))>"
 
     # output the box
     echo "$middle"
