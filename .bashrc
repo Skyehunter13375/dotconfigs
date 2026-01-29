@@ -65,7 +65,7 @@ comment_block() {
     echo "$middle"
     echo "$bottom"
 }
-alias s='sqlite3 /var/www/html/Data/SpaceTraders.db'
+alias s='sqlite3 /home/skyehunter/Projects/NullSky/db/SpaceTraders.db'
 alias vi='nvim'
 alias vim='nvim'
 alias tree='tree -aI .git --dirsfirst'
