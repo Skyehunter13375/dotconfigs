@@ -90,6 +90,9 @@ vim.keymap.set('n', '<leader>sf', builtin.find_files,                     {desc=
 vim.keymap.set('n', '<leader>sg', builtin.live_grep,                      {desc='Treesitter Fuzzyfind Grep'})
 vim.keymap.set('n', '<leader>sn', nvim_config_search,                     {desc = "Seach NeoVim config files"})
 
+-- Bypass leader key wait in terminal mode so that we don't have pauses between keypresses anymore
+vim.keymap.set('t', '<Space>', '<Space>', { noremap = true, silent = true, nowait = true })
+
 
 vim.keymap.set('v', '<leader>//', function()
   local ft = vim.bo.filetype
