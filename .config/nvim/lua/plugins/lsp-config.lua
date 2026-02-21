@@ -83,6 +83,30 @@ return {
           })
         end,
       })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "c", "cpp", "objc", "objcpp", "cc", "h", "hpp" },
+        callback = function(args)
+          vim.lsp.start({
+            name = "clangd",
+            cmd = {
+              "clangd",
+              "--background-index",
+              "--clang-tidy",
+              "--completion-style=detailed",
+              "--header-insertion=iwyu",
+            },
+            root_dir = vim.fs.dirname(
+              vim.fs.find(
+                { "compile_commands.json", ".git", "CMakeLists.txt" },
+                { upward = true }
+              )[1]
+            ),
+            capabilities = vim.lsp.protocol.make_client_capabilities(),
+            bufnr = args.buf,
+          })
+        end,
+      })
     end,
   },
 }
