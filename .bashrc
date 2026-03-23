@@ -69,9 +69,6 @@ comment_block() {
 alias vi='nvim'
 alias vim='nvim'
 alias tree='tree -aI .git --dirsfirst'
-alias dragoon='ssh skyehunter@dragoon'
-alias paladin='ssh awspaladin'
-alias redmage='ssh skyehunter@redmage'
 alias cd_xcom='cd /home/skyehunter/.local/share/Steam/steamapps/workshop/content/268500/'
 
 eval "$(starship init bash)"
