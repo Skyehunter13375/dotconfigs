@@ -1,5 +1,6 @@
 .headers on
-.mode markdown
+-- .mode markdown
+.mode column
 .nullvalue NULL
 PRAGMA detailed_errors = ON;
 PRAGMA foreign_keys    = ON;

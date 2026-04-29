@@ -13,6 +13,7 @@ export PATH
 export HISTCONTROL=ignoredups
 export HISTFILESIZE=2500
 export EDITOR="/usr/bin/nvim"
+export LS_COLORS="$(echo $LS_COLORS | sed 's/ow=[^:]*//g'):ow=1;35:tw=1;35"
 
 comment() {
     local text="$*"
@@ -72,7 +73,7 @@ alias tree='tree -aI .git --dirsfirst'
 alias dragoon='ssh skyehunter@dragoon'
 alias paladin='ssh awspaladin'
 alias redmage='ssh skyehunter@redmage'
-alias cd_xcom='cd /home/skyehunter/.local/share/Steam/steamapps/workshop/content/268500/'
+alias sync_music='rsync -av --delete kaasnexus.net:/media/plex/music/ /mnt/truenas/Music/'
 
 eval "$(starship init bash)"
 # eval "fastfetch"
